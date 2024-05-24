@@ -44,7 +44,7 @@ namespace YOURNAMESPACE.Controllers
         }
 
        [HttpPost]
-[Route("create-order")]
+[Route("")]
 public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest createOrderRequest)
 {
     try
@@ -89,7 +89,7 @@ public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest creat
     }
 }
 [HttpPost]
-[Route("capture-payment")]
+[Route("")]
 public async Task<IActionResult> SaveResponse([FromBody] SaveResponse responseData)
 {
     try
@@ -140,7 +140,7 @@ public async Task<IActionResult> SaveResponse([FromBody] SaveResponse responseDa
 
 
         [HttpPost]
-        [Route("verify-signature")]
+        [Route("")]
         public async Task<IActionResult> VerifySignature([FromBody] VerifySignatureRequest request)
         {
             try
@@ -190,7 +190,7 @@ public async Task<IActionResult> SaveResponse([FromBody] SaveResponse responseDa
     }
 }
 
-public class VerifySignatureRequest
+public class 
 {
     public string OrderId { get; set; }
     public string PaymentId { get; set; }
@@ -200,7 +200,7 @@ public class VerifySignatureRequest
 
 
 
-public class CreateOrderRequest
+public class Request
 {
     public int Amount { get; set; }
     public string Currency { get; set; }

@@ -32,18 +32,14 @@
     <br><br>
     <button id="rzp-button1">Pay Now</button>
     <script>
-        var razorpayKey = ''; // Replace with your actual Razorpay key
+        var razorpayKey = 'rzp_test_6FDbgl0KFPNdCZ'; // Replace with your actual Razorpay key
         var options = {
             key: razorpayKey,
             amount: 0, // Amount in paise, will be set later
             currency: 'INR',
             name: 'HemAunty',
             description: 'Test Payment',
-            prefill: {
-                name: '',
-                email: '',
-                contact: ''
-            },
+            prefill: {}, // Define prefill as an empty object
             handler: function (response) {
                 const paymentData = {
                     OrderId: response.razorpay_order_id,
@@ -51,11 +47,10 @@
                     Signature: response.razorpay_signature,
                     Amount: parseInt(options.amount) / 100, // Convert paise to rupees for database storage
                     Currency: options.currency,
-                    Status: 'Success',
-                    HemorderId: response.hemorderid 
+                    Status: 'Success' // Assuming the status is success if the handler is called
                 };
 
-                fetch('api url', {
+                fetch('http://localhost:5152/api/Order/capture-payment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -105,7 +100,7 @@
             // Convert amount from rupees to paise
             var amountInPaise = parseFloat(amount) * 100;
 
-            fetch('api url', {
+            fetch('http://localhost:5152/api/Order/create-order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
